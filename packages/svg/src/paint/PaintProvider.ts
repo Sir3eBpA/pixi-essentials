@@ -6,7 +6,7 @@ import type { Paint } from './Paint';
 /**
  * Provides the `Paint` for an `SVGElement`. It will also respond to changes in the attributes of the element
  * (not implemented).
- * 
+ *
  * @public
  */
 export class PaintProvider implements Paint
@@ -14,6 +14,7 @@ export class PaintProvider implements Paint
     public element: SVGElement;
 
     public fill: number | string;
+    public fillOpacity: number;
     public opacity: number;
     public stroke: number | string;
     public strokeDashArray: number[];
@@ -33,6 +34,7 @@ export class PaintProvider implements Paint
         this.element = element;
 
         const fill = element.getAttribute('fill');
+        const fillOpacity = element.getAttribute('fill-opacity');
         const opacity = element.getAttribute('opacity');
         const stroke = element.getAttribute('stroke');
         const strokeDashArray = element.getAttribute('stroke-dasharray');
@@ -44,6 +46,7 @@ export class PaintProvider implements Paint
 
         /* eslint-disable-next-line no-nested-ternary */
         this.fill = fill !== null ? (fill === 'none' ? 'none' : PaintProvider.parseColor(fill)) : null;
+        this.fillOpacity = fillOpacity && parseFloat(fillOpacity);
         this.opacity = opacity && parseFloat(opacity);
         this.stroke = stroke && PaintProvider.parseColor(element.getAttribute('stroke'));
         this.strokeDashArray = strokeDashArray

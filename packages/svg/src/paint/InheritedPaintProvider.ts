@@ -4,7 +4,7 @@ import type { Paint } from './Paint';
 /**
  * Inherited paint, used for &lt;use /&gt; elements. The properties used on the inherited paint do not
  * override those on the parent.
- * 
+ *
  * @public
  */
 export class InheritedPaintProvider implements Paint
@@ -75,5 +75,10 @@ export class InheritedPaintProvider implements Paint
     get strokeWidth(): number
     {
         return typeof this.provider.strokeWidth === 'number' ? this.provider.strokeWidth : this.parent.strokeWidth;
+    }
+
+    get fillOpacity(): number
+    {
+        return (typeof this.provider.fillOpacity === 'number') ? this.provider.fillOpacity : this.parent.fillOpacity;
     }
 }

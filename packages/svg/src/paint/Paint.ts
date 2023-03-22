@@ -15,6 +15,11 @@ export interface Paint
     readonly fill: number | string;
 
     /**
+     * Fill opacity of the shape
+     */
+    readonly fillOpacity: number;
+
+    /**
      * The opacity of the fill.
      */
     readonly opacity: number;
