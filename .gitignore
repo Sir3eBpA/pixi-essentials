@@ -75,3 +75,7 @@ index.d.ts
 
 # IntelliJ
 *.iml
+
+# Don't ignore svg packages folder so they can be hosted on github
+!/packages/svg/dist
+!/packages/svg/lib
