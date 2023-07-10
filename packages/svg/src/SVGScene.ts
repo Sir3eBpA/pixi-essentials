@@ -444,7 +444,6 @@ export class SVGScene extends DisplayObject
         const paint = basePaint ? new InheritedPaintProvider(basePaint, this.queryPaint(element)) : this.queryPaint(element);
         const {
             fill,
-            fillOpacity,
             opacity,
             stroke,
             strokeDashArray,
@@ -461,8 +460,6 @@ export class SVGScene extends DisplayObject
 
         let opacityVal = opacity === null ? 1 : opacity;
 
-        let fillOpacityVal = fillOpacity === null ? 1 : fillOpacity;
-
         if (node instanceof SVGGraphicsNode)
         {
             if (fill === 'none')
@@ -471,11 +468,11 @@ export class SVGScene extends DisplayObject
             }
             else if (typeof fill === 'number')
             {
-                node.beginFill(fill, fillOpacityVal * opacityVal);
+                node.beginFill(fill, opacityVal);
             }
             else if (!fill)
             {
-                node.beginFill(0, fillOpacityVal * opacityVal);
+                node.beginFill(0, opacityVal);
             }
             else
             {
@@ -490,7 +487,7 @@ export class SVGScene extends DisplayObject
                     node.paintServers.push(paintServer);
                     node.beginTextureFill({
                         texture: paintTexture,
-                        alpha: fillOpacityVal * opacityVal,
+                        alpha: opacityVal,
                         matrix: new Matrix(),
                     });
                 }
